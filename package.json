@@ -1,0 +1,17 @@
+{
+  "name": "meos-app",
+  "version": "1.0.0",
+  "description": "A desktop version for the MEOS website",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "DarkKillerXL / Casper B.",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.0.1"
+  },
+  "dependencies": {
+    "electron-pdf-window": "^1.0.12"
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politie Groningen - MEOS</title>
+    <script src="https://kit.fontawesome.com/ef600a0bf5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <li id="wetboek">   <i class="fa fa-fw fa-legal"></i> Wetboek</li>
+        <li id="wagenpark"> <i class="fa fa-fw fa-car"></i> Wagenpark</li>
+        <li id="inname">    <i class="fa fa-fw fa-id-card"></i> Rijbewijsinname</li>
+        <li id="medisch">   <i class="fa fa-fw fa-book-medical"></i> Medisch Stappenplan</li>
+        <li id="handboek">  <i class="fa fa-fw fa-book"></i> Handboek</li>
+        
+        <li id="debug">Debug</li>
+    </div>
+
+    <style>
+        @font-face {
+            font-family: 'politiesans'; /*this is what you put on your font family*/
+            src: url('https://meos.grpfivem.nl/css/fonts/politiesans-regular.ttf'); /*Link to the font*/
+        }
+
+        body {
+            margin: 0;
+        }
+        div {
+            height: 30px;
+            background-color: #00549e;
+        }
+        li {
+            float: left;
+            line-height: 30px;
+            display: block;
+            padding: 0 10px;
+            color: white;
+            font-family: 'politiesans';
+            cursor: pointer;
+        }
+        li:hover {
+            color: #adb5bd;
+        }
+        li>i {
+            height: 16px;
+        }
+
+        #debug {
+            float: right;
+        }
+    </style>
+</body>
+</html>
