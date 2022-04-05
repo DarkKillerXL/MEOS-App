@@ -17,6 +17,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('handboek').addEventListener('click', (event) =>{
         ipcRenderer.send('asynchronous-message', 'doc', 'politiehandboek')
     })
+    document.getElementById('dreiging').addEventListener('click', (event) =>{
+        ipcRenderer.send('asynchronous-message', 'doc', 'dreigingsniveau')
+    })
 
     document.getElementById('minimize').addEventListener('click', (event) =>{
         ipcRenderer.send('asynchronous-message', 'action', 'min')
