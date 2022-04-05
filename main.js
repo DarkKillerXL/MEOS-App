@@ -2,16 +2,17 @@ const { app, BrowserWindow, BrowserView, ipcMain } = require('electron');
 const PDFWindow = require('electron-pdf-window')
 const path = require('path');
 
-const createWindow = () => {
+const MEOS = () => {
     const meosWin = new BrowserWindow({
         width: 800,
         height: 600,
+        frame: false,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'main/preload.js')
         },
         title: 'Politie Groningen - MEOS'
     });
-    meosWin.loadFile('bookmarks.html')
+    meosWin.loadFile('main/index.html')
 
     const view = new BrowserView({
         webPreferences: {
@@ -23,7 +24,7 @@ const createWindow = () => {
     view.setBounds({
         x: 0,
         y: 30,
-        width: 784,
+        width: 800,
         height: 570
     });
     view.setAutoResize({
@@ -36,18 +37,36 @@ const createWindow = () => {
     });
     meosWin.center();
 
-    /*
-    view.webContents.on('page-title-updated', (event, title, explicitSet) => {
-        view.webContents.executeJavaScript(`list = document.getElementsByTagName("li"); for (let i = 0; i < list.length; i++) { if (list[i].includes('Wetboek') ) { alert(i) } }; wetboek.style.display = 'none';`)
+    ipcMain.on('back', () => {
+        view.webContents.goBack();
     })
-    */
-    
+    ipcMain.on('fwrd', () => {
+        view.webContents.goForward();
+    })
+
+    ipcMain.on('pageChange', () => {
+        var back = view.webContents.canGoBack()
+        var fwrd = view.webContents.canGoForward()
+
+        meosWin.send('update', back, fwrd)
+    })
+
+    meosWin.on('maximize', () => {
+        meosWin.send('maximize')
+    })
+    meosWin.on('unmaximize', () => {
+        meosWin.send('unmaximize')
+        meosWin.center()
+    })
+    meosWin.on('close', () => {
+        app.quit()
+    })
 };
 
 const open = (page) => {
     const win = new PDFWindow({
         width: 800,
-        height: 600
+        height: 600,
     });
     win.loadURL(`https://meos.grpfivem.nl/files/${page}.pdf`)
 
@@ -67,7 +86,7 @@ const openDebug = () => {
 
 
 app.whenReady().then(() => {
-    createWindow();
+    MEOS();
 });
 
 app.on('window-all-closed', () => {
@@ -76,12 +95,24 @@ app.on('window-all-closed', () => {
 
 
 // Receive messages and open page in new window
-ipcMain.on("asynchronous-message", (event, arg, doc) => {
+ipcMain.on("asynchronous-message", (event, arg, arg2) => {
     if (arg == 'doc') {
-        open(doc);
-    } else if (arg == 'debug') {
-        openDebug();
-        console.log('Opening Debug')
+        open(arg2);
+    } else if (arg == 'action') {
+        if (arg2 == 'min') {
+            BrowserWindow.getFocusedWindow().minimize()
+        } else if (arg2 == 'max') {
+            BrowserWindow.getFocusedWindow().maximize()
+        } else if (arg2 == 'rest') {
+            BrowserWindow.getFocusedWindow().restore()
+        } else if (arg2 == 'close') {
+            app.quit()
+        }
     }
   
 });
+
+ipcMain.on('debug', () => {
+    console.log('Opening Debug')
+    openDebug()
+})
