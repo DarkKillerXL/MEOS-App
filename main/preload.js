@@ -3,22 +3,22 @@ window.addEventListener('DOMContentLoaded', () => {
     
     // Send message to main.js
     document.getElementById('wetboek').addEventListener('click', (event) =>{
-        ipcRenderer.send('asynchronous-message', 'doc', 'wetboekstrafrecht')
+        ipcRenderer.send('doc', 'wetboekstrafrecht', 'Wetboek')
     })
     document.getElementById('wagenpark').addEventListener('click', (event) =>{
-        ipcRenderer.send('asynchronous-message', 'doc', 'wagenpark')
+        ipcRenderer.send('doc', 'wagenpark', 'Wagenpark')
     })
     document.getElementById('inname').addEventListener('click', (event) =>{
-        ipcRenderer.send('asynchronous-message', 'doc', 'rijbewijsinname')
+        ipcRenderer.send('doc', 'rijbewijsinname', 'Rijbewijs Inname')
     })
     document.getElementById('medisch').addEventListener('click', (event) =>{
-        ipcRenderer.send('asynchronous-message', 'doc', 'medisch-stappenplan')
+        ipcRenderer.send('doc', 'medisch-stappenplan', 'Medisch Stappenplan')
     })
     document.getElementById('handboek').addEventListener('click', (event) =>{
-        ipcRenderer.send('asynchronous-message', 'doc', 'politiehandboek')
+        ipcRenderer.send('doc', 'politiehandboek', 'Handboek')
     })
     document.getElementById('dreiging').addEventListener('click', (event) =>{
-        ipcRenderer.send('asynchronous-message', 'doc', 'dreigingsniveau')
+        ipcRenderer.send('doc', 'dreigingsniveau', 'Dreigings Niveau')
     })
 
     document.getElementById('minimize').addEventListener('click', (event) =>{

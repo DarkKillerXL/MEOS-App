@@ -17,6 +17,9 @@ body {
     opacity: 1 !important;
     cursor: pointer;
 }
+#nav > .enabled:hover {
+    background-color: #0068c4 !important;
+}
 
 
 #bookmarks {

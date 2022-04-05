@@ -12,6 +12,8 @@
     "electron": "^18.0.1"
   },
   "dependencies": {
-    "electron-pdf-window": "^1.0.12"
+  },
+  "build": {
+    "extraResources": ["./public/**"]
   }
 }

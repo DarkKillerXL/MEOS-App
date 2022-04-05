@@ -63,15 +63,6 @@ const MEOS = () => {
     })
 };
 
-const open = (page) => {
-    const win = new PDFWindow({
-        width: 800,
-        height: 600,
-    });
-    win.loadURL(`https://meos.grpfivem.nl/files/${page}.pdf`)
-
-}
-
 const openDebug = () => {
     const win = new BrowserWindow({
         width: 800,
@@ -96,9 +87,7 @@ app.on('window-all-closed', () => {
 
 // Receive messages and open page in new window
 ipcMain.on("asynchronous-message", (event, arg, arg2) => {
-    if (arg == 'doc') {
-        open(arg2);
-    } else if (arg == 'action') {
+    if (arg == 'action') {
         if (arg2 == 'min') {
             BrowserWindow.getFocusedWindow().minimize()
         } else if (arg2 == 'max') {
@@ -106,11 +95,34 @@ ipcMain.on("asynchronous-message", (event, arg, arg2) => {
         } else if (arg2 == 'rest') {
             BrowserWindow.getFocusedWindow().restore()
         } else if (arg2 == 'close') {
-            app.quit()
+            BrowserWindow.getFocusedWindow().close()
         }
     }
   
 });
+
+ipcMain.on("doc", (event, page, title) => {
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, 'pdf/renderer.js')
+        },
+        frame: false
+    });
+    win.loadURL(`file://${__dirname}/pdf/index.html?doc=${page}`)
+    win.webContents.once('dom-ready', () => {
+        win.title = `Politie Groningen - ${title}`
+    })
+
+    win.on('maximize', () => {
+        win.send('maximize')
+    })
+    win.on('unmaximize', () => {
+        win.send('unmaximize')
+        win.center()
+    })
+})
 
 ipcMain.on('debug', () => {
     console.log('Opening Debug')
