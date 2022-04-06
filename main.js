@@ -9,7 +9,8 @@ const MEOS = () => {
         webPreferences: {
             preload: path.join(__dirname, 'main/preload.js')
         },
-        title: 'Politie Groningen - MEOS'
+        title: 'Politie Groningen - MEOS',
+        icon: 'app-icon.ico'
     });
     meosWin.loadFile('main/index.html')
 
@@ -76,6 +77,7 @@ const openDebug = () => {
 
 
 app.whenReady().then(() => {
+    if(require('electron-squirrel-startup')) app.quit();
     MEOS();
 });
 

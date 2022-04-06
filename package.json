@@ -1,19 +1,60 @@
 {
-  "name": "meos-app",
+  "name": "meos",
   "version": "1.0.0",
-  "description": "A desktop version for the MEOS website",
+  "description": "Een desktop versie voor de MEOS",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
-  "author": "DarkKillerXL / Casper B.",
+  "author": "DarkKillerXL",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "electron": "^18.0.1"
   },
-  "dependencies": {
-  },
   "build": {
-    "extraResources": ["./public/**"]
+    "extraResources": [
+      "./public/**"
+    ]
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "C:/Users/caspe/Documents/GitHub/MEOS-App/app-icon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "MEOS",
+            "iconUrl": "https://meos.grpfivem.nl/favicon.ico",
+            "setupIcon": "C:/Users/caspe/Documents/GitHub/MEOS-App/app-icon.ico"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
