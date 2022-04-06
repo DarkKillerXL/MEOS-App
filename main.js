@@ -1,5 +1,4 @@
 const { app, BrowserWindow, BrowserView, ipcMain } = require('electron');
-const PDFWindow = require('electron-pdf-window')
 const path = require('path');
 
 const MEOS = () => {
