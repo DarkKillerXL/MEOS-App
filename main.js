@@ -1,6 +1,8 @@
 const { app, BrowserWindow, BrowserView, ipcMain } = require('electron');
 const path = require('path');
 
+require('update-electron-app')()
+
 const MEOS = () => {
     const meosWin = new BrowserWindow({
         width: 800,
