@@ -1,7 +1,11 @@
 {
   "name": "meos",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Een desktop versie voor de MEOS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DarkKillerXL/MEOS-App.git"
+  },
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -24,7 +28,8 @@
     ]
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "update-electron-app": "^2.0.1"
   },
   "config": {
     "forge": {
