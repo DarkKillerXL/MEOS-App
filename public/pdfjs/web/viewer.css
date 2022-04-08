@@ -1626,12 +1626,6 @@ html[dir="rtl"] .splitToolbarButton > .toolbarButton:first-child {
   margin: 4px 0;
 }
 
-.findbar .splitToolbarButtonSeparator {
-  background-color: var(--field-border-color);
-  margin: 0;
-  padding: 13px 0;
-}
-
 html[dir="ltr"] .splitToolbarButtonSeparator {
   float: left;
 }
