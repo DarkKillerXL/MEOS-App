@@ -8,6 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('wagenpark').addEventListener('click', (event) =>{
         ipcRenderer.send('doc', 'wagenpark', 'Wagenpark')
     })
+    document.getElementById('voertuig').addEventListener('click', (event) =>{
+        ipcRenderer.send('doc', 'informatie-innamesysteem-overheid', 'Voertuig Inname')
+    })
     document.getElementById('inname').addEventListener('click', (event) =>{
         ipcRenderer.send('doc', 'rijbewijsinname', 'Rijbewijs Inname')
     })
